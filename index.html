@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ===== Seguridad (baseline en el HTML; la cabecera HTTP completa va en _headers / vercel.json) ===== -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               base-uri 'self';
+               object-src 'none';
+               script-src 'self';
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               img-src 'self' data: blob: https:;
+               connect-src 'self' https://*.supabase.co wss://*.supabase.co;
+               worker-src 'self' blob:;
+               frame-src 'none';
+               form-action 'self';
+               manifest-src 'self'" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light" />
+
+    <title>Marichuy · Chocolatería Artesanal</title>
+    <meta
+      name="description"
+      content="Chocolates artesanales colombianos bean-to-bar. Catálogo, pago con Nequi o efectivo contra entrega y envíos a todo el país."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Marichuy · Chocolatería Artesanal" />
+    <meta
+      property="og:description"
+      content="Chocolates artesanales colombianos bean-to-bar. Envíos a todo el país."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-[#F9F6F0] text-[#1E1E1E] font-sans antialiased min-h-screen selection:bg-[#3E2723] selection:text-white"
+  >
+    <div id="root"></div>
+    <noscript>
+      Marichuy necesita JavaScript activado para funcionar. Por favor actívalo en tu navegador.
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

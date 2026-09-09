@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: todas las rutas caen en index.html (el router es por estado, no por URL)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Las cabeceras de seguridad se definen en public/_headers

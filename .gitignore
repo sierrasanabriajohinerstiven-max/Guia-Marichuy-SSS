@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Builds
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# Variables de entorno — NUNCA subir a git
+.env
+.env.*
+!.env.example
+
+# Caches / deploy
+.vite/
+.vercel/
+.netlify/
+.cache/
+
+# Editor / SO
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+*.local
+*.log
+npm-debug.log*
