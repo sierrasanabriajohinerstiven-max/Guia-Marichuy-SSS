@@ -50,8 +50,23 @@ Es un sitio estático (SPA). El build genera `dist/`.
 
 - **Vercel:** detecta `vercel.json` (cabeceras de seguridad + rewrite SPA).
 - **Netlify / Cloudflare Pages:** usa `netlify.toml` + `public/_headers`.
+- **Coolify / Docker (autohospedado):** usa el `Dockerfile` (build multi-stage
+  Node → Nginx sin privilegios en el puerto `8080`). Las cabeceras de seguridad
+  y el fallback de SPA van en `nginx.conf`. Healthcheck en `/healthz`.
+  Las variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` deben pasarse como
+  **build args / "Build Variables"** (Vite las incrusta en tiempo de build, no de runtime).
 - **Otro host / Nginx:** publica `dist/`, redirige todas las rutas a `index.html`
   y replica las cabeceras de `public/_headers`.
+
+### Probar la imagen en local
+
+```bash
+docker build -t marichuy \
+  --build-arg VITE_SUPABASE_URL="https://TU-PROYECTO.supabase.co" \
+  --build-arg VITE_SUPABASE_ANON_KEY="sb_publishable_..." .
+docker run --rm -p 8080:8080 marichuy
+# http://localhost:8080
+```
 
 Antes de subir a producción, sigue la lista de `HARDENING_SUPABASE.md` (Site URL,
 protección de contraseñas filtradas, límites de tasa, etc.).

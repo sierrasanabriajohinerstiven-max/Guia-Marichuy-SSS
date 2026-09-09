@@ -1,0 +1,25 @@
+# Nada de esto debe entrar al contexto de build ni a la imagen.
+node_modules
+dist
+dist-ssr
+.git
+.github
+.vscode
+.vite
+.vercel
+.netlify
+.cache
+coverage
+
+# Secretos — jamás dentro de la imagen
+.env
+.env.*
+!.env.example
+
+# Ruido
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+*.local
+*.tsbuildinfo
