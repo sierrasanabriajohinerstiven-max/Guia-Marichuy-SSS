@@ -19,7 +19,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
         type="button"
         onClick={() => onSelectCategory(null)}
         className={cn(
-          'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer',
+          'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] cursor-pointer hover:-translate-y-0.5',
           selectedCategoryId === null
             ? 'bg-[#3E2723] text-[#F9F6F0] shadow-xs'
             : 'bg-white/80 text-[#6B6B6B] hover:text-[#3E2723] hover:bg-white border border-[#3E2723]/10'
@@ -36,7 +36,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
             type="button"
             onClick={() => onSelectCategory(cat.id)}
             className={cn(
-              'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer',
+              'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] cursor-pointer hover:-translate-y-0.5',
               isSelected
                 ? 'bg-[#3E2723] text-[#F9F6F0] shadow-xs'
                 : 'bg-white/80 text-[#6B6B6B] hover:text-[#3E2723] hover:bg-white border border-[#3E2723]/10'

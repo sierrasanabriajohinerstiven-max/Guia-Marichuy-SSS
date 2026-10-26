@@ -42,12 +42,12 @@ export const Input: React.FC<InputProps> = ({
           id={inputId}
           disabled={disabled}
           className={cn(
-            'w-full min-h-[44px] px-3.5 py-2 text-sm bg-white border rounded-lg transition-colors text-[#1E1E1E] placeholder:text-[#6B6B6B]/60 focus:outline-none focus:ring-2 disabled:bg-[#F9F6F0] disabled:cursor-not-allowed',
+            'w-full min-h-[44px] px-4 py-2 text-sm bg-white/55 backdrop-blur-md border rounded-2xl transition-[background-color,border-color,box-shadow] duration-200 focus:bg-white/80 text-[#1E1E1E] placeholder:text-[#6B6B6B]/60 focus:outline-none focus:ring-2 disabled:bg-[#F9F6F0] disabled:cursor-not-allowed',
             leftIcon ? 'pl-10' : '',
             rightIcon ? 'pr-10' : '',
             error
               ? 'border-[#C62828] focus:ring-[#C62828]/20 focus:border-[#C62828]'
-              : 'border-[#3E2723]/20 focus:ring-[#D84315]/20 focus:border-[#D84315]',
+              : 'border-white/75 focus:ring-[#D84315]/25 focus:border-[#D84315]/60',
             className
           )}
           {...props}

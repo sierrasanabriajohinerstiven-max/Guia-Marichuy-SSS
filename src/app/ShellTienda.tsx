@@ -33,42 +33,43 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
   const isAdmin = profile?.role === 'admin';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F9F6F0] text-[#1E1E1E]">
+    <div className="mc-app min-h-screen flex flex-col text-[#1E1E1E]">
+      <div className="g-scene" />
       {/* Top artisanal announcement bar */}
-      <div className="bg-[#3E2723] text-[#F9F6F0] text-[11px] py-2 px-4 text-center tracking-wider font-medium flex items-center justify-center gap-2">
+      <div className="bg-[#2E1C18]/80 backdrop-blur-md text-[#F9F6F0] text-[11px] py-2 px-4 text-center tracking-wider font-medium flex items-center justify-center gap-2">
         <Sparkles className="w-3.5 h-3.5 text-[#D84315]" />
         <span>Chocolatería artesanal con cacao fino colombiano de aroma · Envíos a todo el país</span>
       </div>
 
       {/* Main Navigation Header */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#3E2723]/10 transition-shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <header className="glass glass--strong mc-shell-in sticky top-3 z-40 mx-3 sm:mx-6 mt-3 max-w-7xl xl:mx-auto xl:w-[calc(100%-3rem)] [--g-radius:28px]">
+        <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Brand Logo */}
           <div
             onClick={() => onNavigate('catalogo')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#3E2723] text-white flex items-center justify-center font-serif font-bold text-xl group-hover:bg-[#D84315] transition-colors shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-[#3E2723] text-white flex items-center justify-center font-serif font-bold text-xl group-hover:bg-[#D84315] group-hover:rotate-[-6deg] transition-all duration-300 shadow-[0_6px_18px_-6px_rgba(62,39,35,.6)]">
               M
             </div>
             <div>
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#3E2723] block leading-none">
                 Marichuy
               </span>
-              <span className="text-[10px] tracking-widest uppercase text-[#D84315] font-semibold block mt-0.5">
+              <span className="text-[10px] tracking-widest uppercase text-[#D84315] font-semibold hidden sm:block mt-0.5">
                 Chocolatería Artesanal
               </span>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-[#3E2723]/80">
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/45 border border-white/70 text-[13px] font-medium text-[#3E2723]/80">
             <button
               onClick={() => onNavigate('catalogo')}
-              className={`hover:text-[#D84315] transition-colors py-1 ${
+              className={`px-4 py-2 rounded-full transition-all duration-300 ${
                 currentView === 'catalogo' || currentView === 'producto'
-                  ? 'text-[#D84315] border-b-2 border-[#D84315]'
-                  : ''
+                  ? 'bg-[#3E2723] text-white shadow-[0_4px_14px_-4px_rgba(62,39,35,.6)]'
+                  : 'hover:bg-white/60 hover:text-[#3E2723]'
               }`}
             >
               Catálogo de Cacao
@@ -77,10 +78,10 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
             {user && (
               <button
                 onClick={() => onNavigate('mis-pedidos')}
-                className={`hover:text-[#D84315] transition-colors py-1 flex items-center gap-1.5 ${
+                className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-1.5 ${
                   currentView === 'mis-pedidos'
-                    ? 'text-[#D84315] border-b-2 border-[#D84315]'
-                    : ''
+                    ? 'bg-[#3E2723] text-white shadow-[0_4px_14px_-4px_rgba(62,39,35,.6)]'
+                    : 'hover:bg-white/60 hover:text-[#3E2723]'
                 }`}
               >
                 <Package className="w-4 h-4" />
@@ -91,7 +92,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
             {isAdmin && (
               <button
                 onClick={() => onNavigate('admin-dashboard')}
-                className="text-[#558B2F] hover:text-[#3E2723] transition-colors py-1 flex items-center gap-1.5 bg-[#F1F8E9] px-2.5 rounded-full"
+                className="text-[#558B2F] hover:text-[#3E2723] transition-colors py-2 flex items-center gap-1.5 bg-[#F1F8E9]/80 px-4 rounded-full"
               >
                 <ShieldAlert className="w-3.5 h-3.5" />
                 Panel Admin
@@ -105,7 +106,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
             <button
               type="button"
               onClick={() => onNavigate('carrito')}
-              className="relative p-2.5 text-[#3E2723] hover:text-[#D84315] rounded-xl hover:bg-[#F9F6F0] transition-colors flex items-center gap-2 border border-[#3E2723]/10"
+              className="relative h-10 px-3 text-[#3E2723] hover:text-[#D84315] rounded-full bg-white/45 hover:bg-white/70 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 flex items-center gap-2 border border-white/70"
               aria-label="Ir al carrito de compras"
             >
               <ShoppingBag className="w-5 h-5" />
@@ -123,9 +124,9 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate('perfil')}
-                  className="flex items-center gap-2 p-1.5 pl-2 rounded-xl border border-[#3E2723]/10 hover:border-[#3E2723]/25 bg-white text-xs font-bold text-[#3E2723] transition-colors"
+                  className="flex items-center gap-2 h-10 p-1 pr-3 rounded-full border border-white/70 bg-white/45 hover:bg-white/70 text-xs font-semibold text-[#3E2723] transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-[#3E2723]/10 text-[#3E2723] flex items-center justify-center text-xs">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D84315] to-[#3E2723] text-white flex items-center justify-center text-xs font-bold">
                     {(profile?.full_name || user.email || 'U')[0].toUpperCase()}
                   </div>
                   <span className="hidden sm:inline max-w-[120px] truncate">
@@ -158,7 +159,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-[#3E2723]/10 px-4 py-4 space-y-3">
+          <div className="md:hidden mc-fade border-t border-white/60 px-4 py-4 space-y-3">
             <button
               onClick={() => {
                 onNavigate('catalogo');
@@ -220,14 +221,16 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-24 md:pb-8">
-        {children}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-28 md:pb-8">
+        <div key={currentView === 'producto' ? 'catalogo' : currentView} className="mc-page">
+          {children}
+        </div>
       </main>
 
       {/* Mobile Bottom Navigation Bar (Viewport angosto: 4 destinos) */}
       <nav
         aria-label="Navegación móvil"
-        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#3E2723]/10 px-2 py-1.5 flex items-center justify-around shadow-lg"
+        className="md:hidden glass glass--strong fixed bottom-3 left-3 right-3 z-40 px-2 py-1.5 flex items-center justify-around [--g-radius:24px]"
       >
         <button
           type="button"
@@ -290,7 +293,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
       </nav>
 
       {/* Artisan Footer */}
-      <footer className="bg-[#3E2723] text-[#F9F6F0] border-t border-[#3E2723]/20 py-12 px-4 sm:px-6 lg:px-8 mt-12">
+      <footer className="glass glass--dark mx-3 sm:mx-6 mb-24 md:mb-6 mt-12 py-12 px-6 sm:px-10 [--g-radius:32px]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
           <div className="space-y-3">
             <div className="flex items-center gap-2">

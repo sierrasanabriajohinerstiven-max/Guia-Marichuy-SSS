@@ -26,19 +26,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
   return (
     <div
       onClick={() => onViewDetail(product.id)}
-      className="group bg-white rounded-xl border border-[#3E2723]/10 shadow-xs hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col cursor-pointer"
+      data-tilt
+      className="glass group p-2.5 flex flex-col cursor-pointer hover:shadow-[0_24px_50px_-14px_rgba(40,20,10,.45)]"
     >
       {/* Product Image Container */}
-      <div className="relative w-full aspect-square bg-[#3E2723]/5 overflow-hidden">
+      <div className="relative w-full aspect-square bg-[#3E2723]/10 overflow-hidden rounded-[18px]">
         {product.image_path ? (
           <img
             src={product.image_path}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(.2,.8,.2,1)]"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-[#3E2723]/40 bg-[#EFEBE9]">
+          <div className="w-full h-full flex items-center justify-center text-[#3E2723]/40 bg-gradient-to-br from-[#EFEBE9] to-[#D7C4B5]">
             <ShoppingBag className="w-12 h-12 stroke-[1.2]" />
           </div>
         )}
@@ -46,11 +47,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
         {/* Badges on image */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
           {isOutOfStock ? (
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#C62828] text-white shadow-xs">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#C62828]/90 backdrop-blur-md text-white shadow-xs">
               Agotado
             </span>
           ) : isLowStock ? (
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#ED6C02] text-white shadow-xs">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#ED6C02]/90 backdrop-blur-md text-white shadow-xs">
               ¡Últimas {product.stock} uds!
             </span>
           ) : null}
@@ -58,9 +59,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
       </div>
 
       {/* Product Details */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+      <div className="px-2.5 pt-4 pb-1.5 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="text-base font-bold text-[#3E2723] group-hover:text-[#D84315] transition-colors line-clamp-1">
+          <h3 className="font-serif text-lg font-semibold text-[#3E2723] group-hover:text-[#D84315] transition-colors line-clamp-1">
             {product.name}
           </h3>
           <p className="text-xs text-[#6B6B6B] mt-1 line-clamp-2 leading-relaxed">
@@ -68,12 +69,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
           </p>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-[#3E2723]/5 flex items-center justify-between gap-2">
+        <div className="mt-4 pt-3 border-t border-white/60 flex items-center justify-between gap-2">
           <div>
             <span className="text-[10px] uppercase font-bold tracking-wider text-[#6B6B6B] block">
               Precio
             </span>
-            <Money amount={product.price_cop} className="text-base font-bold text-[#3E2723]" />
+            <Money amount={product.price_cop} className="text-lg font-semibold text-[#3E2723]" />
           </div>
 
           <Button

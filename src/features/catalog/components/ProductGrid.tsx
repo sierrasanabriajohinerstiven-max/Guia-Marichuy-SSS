@@ -26,7 +26,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="bg-white rounded-xl p-4 border border-[#3E2723]/10 space-y-3">
+          <div key={i} className="glass p-4 space-y-3">
             <Skeleton variant="card" className="h-48 rounded-lg" />
             <Skeleton variant="text" className="h-5 w-3/4" />
             <Skeleton variant="text" className="h-4 w-full" />
@@ -62,7 +62,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+    <div className="mc-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
       {products.map((product) => (
         <ProductCard
           key={product.id}

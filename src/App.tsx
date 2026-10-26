@@ -127,7 +127,8 @@ function MainRouter() {
   if (currentView.startsWith('admin-')) {
     if (authLoading) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-[#F9F6F0]">
+        <div className="mc-app min-h-screen flex items-center justify-center">
+          <div className="g-scene" />
           <div className="w-8 h-8 border-4 border-[#D84315] border-t-transparent rounded-full animate-spin" />
         </div>
       );
@@ -267,11 +268,15 @@ export default function App() {
         position="top-right"
         toastOptions={{
           style: {
-            background: '#3E2723',
+            background: 'rgba(46, 28, 24, 0.78)',
+            backdropFilter: 'blur(18px) saturate(160%)',
+            WebkitBackdropFilter: 'blur(18px) saturate(160%)',
             color: '#F9F6F0',
             fontSize: '13px',
-            borderRadius: '10px',
-            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '16px',
+            padding: '10px 14px',
+            border: '1px solid rgba(255,255,255,0.18)',
+            boxShadow: '0 14px 40px -10px rgba(40,20,10,.45)',
           },
           success: {
             iconTheme: {

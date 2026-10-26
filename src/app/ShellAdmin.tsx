@@ -33,9 +33,10 @@ export const ShellAdmin: React.FC<ShellAdminProps> = ({
   ];
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-[#F9F6F0] text-[#1E1E1E]">
+    <div className="mc-app min-h-screen flex flex-col md:flex-row md:gap-4 md:p-4 text-[#1E1E1E]">
+      <div className="g-scene" />
       {/* Sidebar Desktop */}
-      <aside className="w-full md:w-64 bg-[#3E2723] text-white flex flex-col justify-between shrink-0 shadow-xl border-r border-[#3E2723]/30">
+      <aside className="glass glass--dark mc-shell-in w-full md:w-64 md:sticky md:top-4 md:h-[calc(100vh-2rem)] text-white flex flex-col justify-between shrink-0 rounded-none md:[--g-radius:28px] md:rounded-[28px]">
         <div>
           {/* Brand header */}
           <div className="p-6 border-b border-white/10 flex items-center justify-between">
@@ -65,9 +66,9 @@ export const ShellAdmin: React.FC<ShellAdminProps> = ({
                   key={item.view}
                   type="button"
                   onClick={() => onNavigate(item.view)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-[13px] font-medium transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#D84315] text-white shadow-xs'
+                      ? 'bg-[#D84315] text-white shadow-[0_6px_18px_-6px_rgba(216,67,21,.8)] translate-x-1'
                       : 'text-white/75 hover:bg-white/10 hover:text-white'
                   }`}
                 >
@@ -111,8 +112,10 @@ export const ShellAdmin: React.FC<ShellAdminProps> = ({
       </aside>
 
       {/* Main Admin Content */}
-      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-        {children}
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-4 max-w-7xl mx-auto w-full">
+        <div key={currentView} className="mc-page">
+          {children}
+        </div>
       </main>
     </div>
   );
