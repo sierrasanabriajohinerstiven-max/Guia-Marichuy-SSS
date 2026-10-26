@@ -1,5 +1,5 @@
 /* ==========================================================
-   Glass UI v3 — motor de interacción
+   Glass UI v3.1 — motor de interacción (optimizado)
    - Spotlight: SOLO la tarjeta bajo el cursor se ilumina (la más interna).
      La posición del panel se fija al entrar, así la inclinación no la desplaza.
    - Tilt 3D suavizado con interpolación (sin tirones), capas [data-depth].
@@ -16,6 +16,18 @@
   const root = document.documentElement;
   const fine = matchMedia('(pointer: fine)').matches;
   const calm = () => root.classList.contains('g-calm');
+
+  /* ---------- Modo lite automático (equipos modestos / táctiles) ----------
+     Forzar: <html data-glass="lite"> o <html data-glass="full"> */
+  const mode = root.dataset.glass;
+  const weak = (navigator.deviceMemory && navigator.deviceMemory <= 4) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || !fine;
+  const lite = mode === 'lite' || (mode !== 'full' && weak);
+  root.classList.toggle('g-lite', lite);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('g-calm');
+
+  /* Pestaña oculta: todas las animaciones en pausa */
+  const vis = () => root.classList.toggle('g-hidden', document.hidden);
+  document.addEventListener('visibilitychange', vis); vis();
   const lerp = (a, b, t) => a + (b - a) * t;
 
   /* ---------- Spotlight + tilt (una sola tarjeta activa) ---------- */
@@ -36,7 +48,7 @@
     st.cx = e.clientX - st.rect.left; st.cy = e.clientY - st.rect.top;
     el.classList.add('is-lit');
     const t = el.closest('[data-tilt]');
-    if (t && fine && !calm()) {
+    if (t && fine && !lite && !calm()) {
       if (st.tiltEl && st.tiltEl !== t) release(st.tiltEl);
       st.tiltEl = t;
       st.leaving = st.leaving.filter(x => x.el !== t);
@@ -140,7 +152,7 @@
   const aura = {
     el: null, x: 0, y: 0, cx: 0, cy: 0, raf: 0,
     kick() {
-      if (!document.body?.hasAttribute('data-aura')) return;
+      if (lite || !document.body?.hasAttribute('data-aura')) return;
       if (!this.el) { this.el = document.createElement('div'); this.el.className = 'g-aura'; document.body.appendChild(this.el); this.cx = this.x; this.cy = this.y; }
       if (this.raf) return;
       const tick = () => {
@@ -216,18 +228,36 @@
     el.querySelectorAll?.('[data-count]').forEach(count);
   }), { threshold: .15, rootMargin: '0px 0px -40px 0px' });
 
-  function refresh(scope = document) {
-    scope.querySelectorAll('[data-reveal], [data-count], [data-scramble]').forEach(el => {
-      if (el._obs) return; el._obs = true;
-      if (el.hasAttribute('data-reveal') && !el.style.getPropertyValue('--i')) {
-        const sibs = [...el.parentElement.children].filter(c => c.hasAttribute('data-reveal'));
-        el.style.setProperty('--i', sibs.indexOf(el));
-      }
-      io.observe(el);
-    });
+  /* Animaciones infinitas: solo corren mientras se ven */
+  const LOOPS = '.glass--neon, .glass--holo, .g-marquee, .g-scan, .g-btn--glow, .g-gradient-text, .g-live, .g-progress, .g-skel, .shine, .g-shine, .g-scene--aurora';
+  const ioLoop = new IntersectionObserver(entries => entries.forEach(en => en.target.classList.toggle('g-off', !en.isIntersecting)), { rootMargin: '120px' });
+
+  const WATCH = '[data-reveal], [data-count], [data-scramble]';
+  function track(el) {
+    if (el._obs) return; el._obs = true;
+    if (el.matches(LOOPS)) { ioLoop.observe(el); if (!el.matches(WATCH)) return; }
+    if (el.hasAttribute('data-reveal') && !el.style.getPropertyValue('--i')) {
+      const sibs = [...el.parentElement.children].filter(c => c.hasAttribute('data-reveal'));
+      el.style.setProperty('--i', sibs.indexOf(el));
+    }
+    io.observe(el);
   }
-  new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => n.nodeType === 1 && refresh(n.parentElement || document)))).observe(root, { childList: true, subtree: true });
+  const SEL = WATCH + ', ' + LOOPS;
+  function refresh(scope = document) {
+    if (scope.nodeType === 1 && scope.matches(SEL)) track(scope);
+    scope.querySelectorAll(SEL).forEach(track);
+  }
+
+  /* Observador del DOM por lotes: un solo escaneo por fotograma y solo de los nodos nuevos */
+  let pending = new Set(), batch = 0;
+  new MutationObserver(ms => {
+    for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1) pending.add(n);
+    if (pending.size && !batch) batch = requestAnimationFrame(() => {
+      batch = 0; const nodes = pending; pending = new Set();
+      nodes.forEach(n => n.isConnected && refresh(n));
+    });
+  }).observe(root, { childList: true, subtree: true });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => refresh()); else refresh();
 
-  window.GlassUI = { refresh, count, scramble, calm: on => root.classList.toggle('g-calm', on) };
+  window.GlassUI = { refresh, count, scramble, lite, calm: on => root.classList.toggle('g-calm', on) };
 })();
