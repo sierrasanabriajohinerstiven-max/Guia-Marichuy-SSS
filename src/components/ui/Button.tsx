@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium rounded-full transition-[transform,background-color,box-shadow,color] duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-0.5 active:scale-95 disabled:hover:translate-y-0 disabled:active:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer select-none';
+    'relative overflow-hidden isolate inline-flex items-center justify-center font-medium rounded-full transition-[transform,background-color,box-shadow,color] duration-300 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-0.5 active:scale-95 disabled:hover:translate-y-0 disabled:active:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer select-none';
 
   const sizeStyles = {
     sm: 'text-xs px-3.5 py-1.5 gap-1.5 min-h-[36px]',
@@ -49,8 +49,10 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
       disabled={disabled || isLoading}
+      data-ripple
       {...props}
     >
+      {(variant === 'primary' || variant === 'brand') && !disabled && !isLoading && <span className="g-shine" aria-hidden="true" />}
       {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin shrink-0" />
       ) : leftIcon ? (

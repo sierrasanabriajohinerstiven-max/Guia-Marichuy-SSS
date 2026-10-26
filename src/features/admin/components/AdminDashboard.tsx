@@ -92,7 +92,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* KPI 1: Ventas Mes */}
-        <div className="bg-white p-5 rounded-xl border border-[#3E2723]/10 shadow-xs flex items-center justify-between">
+        <div data-tilt="6" className="glass p-5 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]">
               Ventas Mes (Excl. Cancelados)
@@ -110,7 +110,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* KPI 2: Pedidos Activos */}
-        <div className="bg-white p-5 rounded-xl border border-[#3E2723]/10 shadow-xs flex items-center justify-between">
+        <div data-tilt="6" className="glass p-5 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]">
               Pedidos en Proceso
@@ -128,7 +128,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* KPI 3: Alerta de Inventario */}
-        <div className="bg-white p-5 rounded-xl border border-[#3E2723]/10 shadow-xs flex items-center justify-between">
+        <div data-tilt="6" className="glass p-5 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]">
               Alerta Stock (&lt; 10 Uds)
@@ -146,7 +146,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* KPI 4: Total Pedidos */}
-        <div className="bg-white p-5 rounded-xl border border-[#3E2723]/10 shadow-xs flex items-center justify-between">
+        <div data-tilt="6" className="glass p-5 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]">
               Total Histórico Órdenes
@@ -165,7 +165,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Low Stock Warning Panel */}
-      <div className="bg-white rounded-xl border border-[#3E2723]/10 p-6 shadow-xs space-y-4">
+      <div className="glass p-6 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-[#ED6C02]" />

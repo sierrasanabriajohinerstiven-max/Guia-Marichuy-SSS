@@ -36,7 +36,7 @@ export const ShellAdmin: React.FC<ShellAdminProps> = ({
     <div className="mc-app min-h-screen flex flex-col md:flex-row md:gap-4 md:p-4 text-[#1E1E1E]">
       <div className="g-scene" />
       {/* Sidebar Desktop */}
-      <aside className="glass glass--dark mc-shell-in w-full md:w-64 md:sticky md:top-4 md:h-[calc(100vh-2rem)] text-white flex flex-col justify-between shrink-0 rounded-none md:[--g-radius:28px] md:rounded-[28px]">
+      <aside className="glass glass--dark g-static mc-shell-in w-full md:w-64 md:sticky md:top-4 md:h-[calc(100vh-2rem)] text-white flex flex-col justify-between shrink-0 rounded-none md:[--g-radius:28px] md:rounded-[28px]">
         <div>
           {/* Brand header */}
           <div className="p-6 border-b border-white/10 flex items-center justify-between">

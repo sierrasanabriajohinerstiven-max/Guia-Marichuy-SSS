@@ -78,15 +78,15 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   return (
     <div className="space-y-8">
       {/* Hero Artisan Banner */}
-      <div className="glass glass--dark text-white p-7 sm:p-12 overflow-hidden [--g-radius:32px]">
+      <div className="glass glass--dark glass--neon text-white p-7 sm:p-12 overflow-hidden [--g-radius:32px]">
         <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-[#D84315]/40 blur-3xl pointer-events-none" />
         <div className="absolute right-24 -bottom-32 w-72 h-72 rounded-full bg-[#F4B183]/20 blur-3xl pointer-events-none" />
         <div className="relative max-w-2xl space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 border border-white/15 text-[#FFB59A]">
             <Sparkles className="w-3.5 h-3.5" /> Colección 2026 · Cacaos Colombianos
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight text-white leading-[1.05]">
-            Chocolatería Fina &amp; Artesanal
+          <h1 data-reveal="blur" className="font-serif text-4xl sm:text-5xl font-semibold tracking-tight text-white leading-[1.05]">
+            Chocolatería Fina <span className="g-gradient-text">&amp; Artesanal</span>
           </h1>
           <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
             Del grano a la barra. Seleccionamos cosechas de origen único en los valles y cordilleras de Colombia, tostadas y refinadas lentamente a la piedra para exaltar perfiles florales, frutales y de nuez.

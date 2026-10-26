@@ -42,7 +42,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
       </div>
 
       {/* Main Navigation Header */}
-      <header className="glass glass--strong mc-shell-in sticky top-3 z-40 mx-3 sm:mx-6 mt-3 max-w-7xl xl:mx-auto xl:w-[calc(100%-3rem)] [--g-radius:28px]">
+      <header className="glass glass--strong g-static mc-shell-in sticky top-3 z-40 mx-3 sm:mx-6 mt-3 max-w-7xl xl:mx-auto xl:w-[calc(100%-3rem)] [--g-radius:28px]">
         <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Brand Logo */}
           <div
@@ -108,6 +108,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
               onClick={() => onNavigate('carrito')}
               className="relative h-10 px-3 text-[#3E2723] hover:text-[#D84315] rounded-full bg-white/45 hover:bg-white/70 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 flex items-center gap-2 border border-white/70"
               aria-label="Ir al carrito de compras"
+              data-magnetic=".25"
             >
               <ShoppingBag className="w-5 h-5" />
               <span className="hidden sm:inline text-xs font-bold">Cesta</span>
@@ -138,6 +139,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
               <Button
                 variant="primary"
                 size="sm"
+                data-magnetic=".25"
                 onClick={() => onNavigate('auth')}
                 leftIcon={<User className="w-4 h-4" />}
               >
@@ -230,7 +232,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
       {/* Mobile Bottom Navigation Bar (Viewport angosto: 4 destinos) */}
       <nav
         aria-label="Navegación móvil"
-        className="md:hidden glass glass--strong fixed bottom-3 left-3 right-3 z-40 px-2 py-1.5 flex items-center justify-around [--g-radius:24px]"
+        className="md:hidden glass glass--strong g-static fixed bottom-3 left-3 right-3 z-40 px-2 py-1.5 flex items-center justify-around [--g-radius:24px]"
       >
         <button
           type="button"
@@ -293,7 +295,7 @@ export const ShellTienda: React.FC<ShellTiendaProps> = ({
       </nav>
 
       {/* Artisan Footer */}
-      <footer className="glass glass--dark mx-3 sm:mx-6 mb-24 md:mb-6 mt-12 py-12 px-6 sm:px-10 [--g-radius:32px]">
+      <footer className="glass glass--dark g-static mx-3 sm:mx-6 mb-24 md:mb-6 mt-12 py-12 px-6 sm:px-10 [--g-radius:32px]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
           <div className="space-y-3">
             <div className="flex items-center gap-2">

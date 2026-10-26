@@ -26,11 +26,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
   return (
     <div
       onClick={() => onViewDetail(product.id)}
-      data-tilt
+      data-tilt="6"
       className="glass group p-2.5 flex flex-col cursor-pointer hover:shadow-[0_24px_50px_-14px_rgba(40,20,10,.45)]"
     >
       {/* Product Image Container */}
-      <div className="relative w-full aspect-square bg-[#3E2723]/10 overflow-hidden rounded-[18px]">
+      <div data-depth="20" className="relative w-full aspect-square bg-[#3E2723]/10 overflow-hidden rounded-[18px]">
         {product.image_path ? (
           <img
             src={product.image_path}
@@ -59,7 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail 
       </div>
 
       {/* Product Details */}
-      <div className="px-2.5 pt-4 pb-1.5 flex-1 flex flex-col justify-between">
+      <div data-depth="30" className="px-2.5 pt-4 pb-1.5 flex-1 flex flex-col justify-between">
         <div>
           <h3 className="font-serif text-lg font-semibold text-[#3E2723] group-hover:text-[#D84315] transition-colors line-clamp-1">
             {product.name}
